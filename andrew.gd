@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #var used to be able to play animations
 @onready var animated_sprite = $AnimatedSprite
-#movmen speeds
+#movment speeds
 @export var speed = 200
 @export var run_speed_damping = 5
 @export var jump_velocity = -500
@@ -25,14 +25,14 @@ func _physics_process(delta):
 		if velocity.x == 0:
 			animated_sprite.play("Idle_" + current_direction)
 #jump physics and play jump animations
-	if Input.is_action_just_pressed("Andrew_Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = jump_velocity
 		animated_sprite.play("Jump_" + current_direction)
 		animated_sprite.stop()
-	if Input.is_action_just_released("Andrew_Jump") and velocity.y < 0:
+	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y *= 0.5
 #detects for movement
-	var direction_input = Input.get_axis("Andrew_Move_Left", "Andrew_Move_Right")
+	var direction_input = Input.get_axis("Move_Left", "Move_Right")
 #movement physics and animation states
 	if direction_input > 0:
 		current_direction = "Right"
