@@ -17,12 +17,12 @@ func _physics_process(delta):
 	#Movement
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	if Input.is_action_just_pressed("Andrew_Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = jump_velocity
-	if Input.is_action_just_released("Andrew_Jump") and velocity.y < 0:
+	if Input.is_action_just_released("Jump") and velocity.y < 0:
 		velocity.y *= 0.5
 		
-	var direction_input = Input.get_axis("Andrew_Move_Left", "Andrew_Move_Right")
+	var direction_input = Input.get_axis("Move_Left", "Move_Right")
 	
 	if direction_input:
 		velocity.x = lerpf(velocity.x, speed * direction_input, run_speed_damping * delta)
